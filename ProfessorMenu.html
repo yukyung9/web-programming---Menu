@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>교수회관 메뉴판</title>
+  <style>
+    #container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 30vh;
+    }
+    
+    #box {
+      width: 400px;
+      height: 90px;
+      background-color: #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    #text {
+      text-align: center;
+      font-size: 27px;
+    }
+    
+    .additionalBoxContainer {
+      display: flex;
+      justify-content: center;
+    }
+    
+    .additionalBox {
+      width: 200px;
+      height: 70px;
+      background-color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px;
+    }
+    
+    .additionalText {
+      text-align: center;
+    }
+
+    #timerBox {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 70px;
+      height: 70px;
+      background-color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="box">
+      <p id="text">교수회관 메뉴판</p>
+    </div>
+  </div>
+  
+  <div class="additionalBoxContainer">
+    <div class="additionalBox">
+      <p class="additionalText">수육보쌈정식</p>
+    </div>
+    <div class="additionalBox">
+      <p class="additionalText">6,000원</p>
+    </div>
+  </div>
+  
+  <div class="additionalBoxContainer">
+    <div class="additionalBox">
+      <p class="additionalText">고구마 돈가스</p>
+    </div>
+    <div class="additionalBox">
+      <p class="additionalText">6,000원</p>
+    </div>
+  </div>
+  
+  <div class="additionalBoxContainer">
+    <div class="additionalBox">
+      <p class="additionalText">치킨 가스</p>
+    </div>
+    <div class="additionalBox">
+      <p class="additionalText">5,500원</p>
+    </div>
+  </div>
+
+  <div class="additionalBoxContainer">
+    <div class="additionalBox">
+      <p class="additionalText">치즈 돈가스</p>
+    </div>
+    <div class="additionalBox">
+      <p class="additionalText">6,000원</p>
+    </div>
+  </div>
+
+  <div class="additionalBoxContainer">
+    <div class="additionalBox">
+      <p class="additionalText">냉모밀</p>
+    </div>
+    <div class="additionalBox">
+      <p class="additionalText">5,500원</p>
+    </div>
+  </div>
+
+  <div class="additionalBoxContainer">
+    <div class="additionalBox">
+      <p class="additionalText">제육 덮밥</p>
+    </div>
+    <div class="additionalBox">
+      <p class="additionalText">5,500원</p>
+    </div>
+  </div>
+
+  <div class="additionalBoxContainer">
+    <div class="additionalBox">
+      <p class="additionalText">알밥 정식</p>
+    </div>
+    <div class="additionalBox">
+      <p class="additionalText">5,500원</p>
+    </div>
+  </div>
+
+  <div class="additionalBoxContainer">
+    <div class="additionalBox">
+      <p class="additionalText">햄김치볶음밥</p>
+    </div>
+    <div class="additionalBox">
+      <p class="additionalText">5,000원</p>
+    </div>
+  </div>
+
+  <div id="timerBox">
+    <p class="additionalText" id="timerText"></p>
+  </div>
+
+  <script>
+    function startTimer(duration, display) {
+      var timer = duration, minutes, seconds;
+      setInterval(function () {
+          minutes = parseInt(timer / 60, 10);
+          seconds = parseInt(timer % 60, 10);
+
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          display.textContent = minutes + ":" + seconds;
+
+          if (--timer < 0) {
+              timer = duration;
+              display.textContent = "시간이 초과되었습니다.";
+              alert("시간이 초과되었습니다.");
+          }
+      }, 1000);
+    }
+
+    window.onload = function () {
+      var oneMinute = 60,
+          display = document.querySelector('#timerText');
+      startTimer(oneMinute, display);
+    };
+  </script>
+
+</body>
+</html>

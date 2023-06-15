@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>백석대 학식 메뉴판</title>
+  <style>
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    
+    .button-container button {
+      margin-bottom: 10px;
+      padding: 15px 30px; 
+      font-size: 18px; 
+    }
+  </style>
+</head>
+<body>
+  <div class="button-container">
+    <h1>백석대 학식 메뉴판</h1>
+    <br>
+    <button id="button1">밀겨울 메뉴판</button>
+    <button id="button2">교수회관 메뉴판</button>
+    <button id="button3">외식산업관 메뉴판</button>
+  </div>
+
+  <script>
+    document.getElementById("button1").addEventListener("click", function() {
+      window.location.href = "MealMenu.html";
+    });
+
+    document.getElementById("button2").addEventListener("click", function() {
+      window.location.href = "ProfessorMenu.html";
+    });
+
+    document.getElementById("button3").addEventListener("click", function() {
+      window.location.href = "GlobalMenu.html";
+    });
+  </script>
+</body>
+</html>

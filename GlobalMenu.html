@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>글로벌외식관</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    body {
+        text-align: center;
+        font-family: Pretendard;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    button {
+        background-color: #E0E0E0;
+        color: #1E242B;
+        border: 0;
+        border-radius: 1em;
+        width: 8em;
+        margin: 0 0 5px 0;
+        padding: 15px 0;
+        font-family: inherit;
+        font-weight: bold;
+        font-size: large;
+    }
+
+    button:hover {
+        background-color: #9B948D;
+    }
+
+    #check:hover {
+        cursor: pointer;
+    }
+
+    .index {
+        font-size: calc(100% + 0.5vmin);
+    }
+
+    .menu {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div class="index">
+        <br>
+        <h1>글로벌외식관 메뉴판</h1>
+        <p>
+            메뉴는 뷔페 형식이기 때문에 변경될 수 있으며,<br>
+            나열된 메뉴는 이전에 한 번 이상 등장한 메뉴들입니다.
+        </p>
+        <div class="menu">
+            <button type="button">밥</button>
+            <button type="button">김치볶음밥</button>
+            <button type="button">카레</button>
+            <button type="button">짜장</button>
+            <button type="button">배추김치</button>
+            <br>
+            <button type="button">제육볶음</button>
+            <button type="button">샐러드</button>
+            <button type="button">콩나물무침</button>
+            <button type="button">콩나물국</button>
+            <button type="button">미역국</button>
+            <br>
+            <button type="button">쫄면</button>
+            <button type="button">당면</button>
+            <button type="button">부침개</button>
+            <button type="button">멸치볶음</button>
+            <button type="button">돈가스</button>
+        </div>
+        <p>
+            가격: 6500원 / 카드 결제 가능
+        </p>
+        <br>
+        <h1>오늘의 추천 메뉴</h1>
+        <p>
+            오늘의 추천 메뉴를 확인하려면 버튼을 눌러보세요.
+        </p>
+        <button type="button" id="check">확인하기</button>
+        <p id="recommend"></p>
+</body>
+
+<script>
+    const menuArray = ["밥", "김치볶음밥", "카레", "짜장", "배추김치", "제육볶음", "샐러드", "콩나물무침", "콩나물국", "미역국", "쫄면", "당면", "부침개", "멸치볶음", "돈가스"];
+
+    const $check = document.querySelector("#check");
+    const $recommend = document.querySelector("#recommend");
+
+    $check.addEventListener('click', () => {
+        const menuIndex = Math.floor(Math.random() * menuArray.length);
+        $recommend.textContent = alert("오늘의 추천 메뉴는 " + menuArray[menuIndex] + "입니다. 맛있게 드세요!");
+    });
+</script>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>밀겨울 메뉴판</title>
+  <style>
+    body {
+      text-align: center;
+    }
+    
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .menu {
+      position: relative;
+      width: 200px;
+      margin: 10px;
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+    
+    .selected-menu {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      text-align: left;
+      display: inline-block;
+    }
+    
+    .total {
+      font-weight: bold;
+      font-size: 20px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .reset-btn {
+      padding: 10px;
+      background-color: #ccc;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+    
+    .timer {
+      font-size: 18px;
+      display: inline-block;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>밀겨울 메뉴판</h1>
+
+  <div class="menu-container">
+    <div class="menu-list">
+      <h2>식사 메뉴</h2>
+      <div class="menu" onclick="addToOrder('사골 칼국수', 4900)">사골 칼국수 - 4900원</div>
+      <div class="menu" onclick="addToOrder('칼칼 칼국수', 5400)">칼칼 칼국수 - 5400원</div>
+      <div class="menu" onclick="addToOrder('사골 시락국밥', 4900)">사골 시락국밥 - 4900원</div>
+      <div class="menu" onclick="addToOrder('시락 비빔밥', 6000)">시락 비빔밥 - 6000원</div>
+      <div class="menu" onclick="addToOrder('옛날 육개장', 6500)">옛날 육개장 - 6500원</div>
+      <div class="menu" onclick="addToOrder('불제육덮밥', 6500)">불제육덮밥 - 6500원</div>
+    </div>
+
+    <div class="menu-list">
+      <h2>계절 메뉴</h2>
+      <div class="menu" onclick="addToOrder('시원 냉모밀', 5400)">시원 냉모밀 - 5400원</div>
+      <div class="menu" onclick="addToOrder('시원 비빔 냉모밀', 5900)">시원 비빔 냉모밀 - 5900원</div>
+    </div>
+
+    <div class="menu-list">
+      <h2>사이드 메뉴</h2>
+      <div class="menu" onclick="addToOrder('명품 찐만두', 3800)">명품 찐만두 - 3800원</div>
+      <div class="menu" onclick="addToOrder('철판 군만두', 3000)">철판 군만두 - 3000원</div>
+      <div class="menu" onclick="addToOrder('갈비만두', 4300)">갈비만두 - 4300원</div>
+      <div class="menu" onclick="addToOrder('공중 떡갈비', 2800)">공중 떡갈비 - 2800원</div>
+    </div>
+  </div>
+
+  <div class="selected-menu">
+    <h2>선택한 메뉴</h2>
+    <ul id="order-list"></ul>
+    <button class="reset-btn" onclick="resetOrder()">리셋</button>
+    <div class="timer"></div>
+  </div>
+
+  <div class="total">총합: 0원</div>
+
+  <script>
+    let order = [];
+    let total = 0;
+    let timerId;
+
+    function addToOrder(menu, price) {
+      const quantity = parseInt(prompt("수량을 입력하세요.", "1"));
+      if (isNaN(quantity) || quantity <= 0 || order.length >= 99) {
+        return;
+      }
+
+      const menuItem = `${menu} - ${price}원 x ${quantity}`;
+      order.push({ menu, price, quantity });
+      total += price * quantity;
+
+      const orderList = document.getElementById("order-list");
+      orderList.innerHTML += `<li>${menuItem}</li>`;
+
+      document.querySelector(".total").textContent = `총합: ${total}원`;
+
+      clearTimeout(timerId);
+      timerId = setTimeout(resetOrder, 30000);
+      startTimer();
+    }
+
+    function resetOrder() {
+      order = [];
+      total = 0;
+
+      let orderList = document.getElementById("order-list");
+      orderList.innerHTML = "";
+
+      document.querySelector(".total").textContent = "총합: 0원";
+
+      clearTimeout(timerId);
+      document.querySelector(".timer").textContent = "";
+    }
+
+    function startTimer() {
+      let seconds = 30;
+      let timer = document.querySelector(".timer");
+      timer.textContent = `${seconds}초 남음`;
+
+      timerId = setInterval(() => {
+        seconds--;
+        timer.textContent = `${seconds}초 남음`;
+
+        if (seconds === 0) {
+          resetOrder();
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
